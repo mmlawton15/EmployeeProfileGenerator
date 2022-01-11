@@ -17,6 +17,7 @@
 // THEN I exit the application, and the HTML is generated
 //should add data validation if i have time
 
+
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
