@@ -130,17 +130,27 @@ return`
             <h1 class="display-3">My Team</h1>
         </div>
     </div>
-    <div id="largeTeamContainer">
-        <div id="managerInfo">
-            ${mgrName}
-            ${mgrOfficeNumber}
-            <a href="mailto:${mgrEmail}">Email Manager</a>
-            ${mgrID}
+    <div id="largeTeamContainer" class="container">
+        <div id="managerInfoContainer" class="col-sm border border-secondary">
+            <div id="managerName" class="bg-info text-white">
+                <p><script></script>${mgrName}</p>
+                <p>Manager</p>
+            </div>
+            <div>
+                <div id="managerID" class="border">
+                    <p>ID: ${mgrID}</p>
+                </div>
+                <div id="managerEmail" class="border">
+                    <a href="mailto:${mgrEmail}">Email Manager</a>
+                </div>
+                <div id="managerOffice" class="border">
+                    <p>Office: ${mgrOfficeNumber}</p>
+                </div>                
+            </div>
         </div>
     </div>
 </body>
 </html>
-
 `
 }
 
