@@ -8,7 +8,7 @@
 // DONE - WHEN I start the application
 // DONE - THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
 // DONE - WHEN I enter the team manager’s name, employee ID, email address, and office number
-// THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+// DONE - THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
 // WHEN I select the engineer option
 // THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
 // WHEN I select the intern option
@@ -33,8 +33,8 @@ console.log(profileDataArgs);
 const promptUserForInformation = () => {
     return inquirer.prompt([
         {
-            type: 'input',
             name: 'managerName',
+            type: 'input',
             message: 'Please enter your Managers first and last name',
             validate: managerNameInput => {
                 if (managerNameInput) {
@@ -47,8 +47,8 @@ const promptUserForInformation = () => {
             }
         },
         {
-            type: 'input',
             name: "managerEmpID",
+            type: 'input',
             message: 'Please enter your managers Employee ID',
             validate: managerEmpIDInput => {
                 if (managerEmpIDInput) {
@@ -61,8 +61,8 @@ const promptUserForInformation = () => {
             }
         },
         {
-            type: 'input',
             name: "managerEmail",
+            type: 'input',            
             message: 'Please enter your managers email address',
             validate: managerEmailInput => {
                 if (managerEmailInput) {
@@ -75,8 +75,8 @@ const promptUserForInformation = () => {
             }
         },
         {
-            type: 'input',
             name: "managerOfficeNumber",
+            type: 'input',            
             message: 'Please enter your managers Office Number',
             validate: managerOfficeNumberInput => {
                 if (managerOfficeNumberInput) {
@@ -87,7 +87,26 @@ const promptUserForInformation = () => {
                 return false;
                 }
             }
+        },
+        {
+            name:"continueBuildingTeam",
+            type: 'list',            
+            message:"Would you like to add an Engineer, an Intern, or Finish your team?",
+            choices: ['Engineer', 'Intern', 'Finish'],
+            validate: continueBuildingInput => {
+                if (continueBuildingInput === "Engineer") {
+                    console.log(answer.continueBuildingTeam);
+                }
+                if (continueBuildingInput === "Intern") {
+                    console.log(answer.continueBuildingTeam);
+                }
+                if (continueBuildingInput === "Finish") {
+                    console.log(answer.continueBuildingTeam);
+                    return true;
+                }
+            }
         }
+        
     ])
     .then((data) => writeToFile(data))
 }
@@ -95,12 +114,12 @@ const promptUserForInformation = () => {
 //CAPTURE AND RETURN THE USERS INPUT
 const printProfileData = profileDataArr => {
     console.log("=======");
-    return`
-    ${mgrName}
-    ${mgrOfficeNumber}
-    ${mgrEmail}
-    ${mgrID}
-    `
+return`
+${mgrName}
+${mgrOfficeNumber}
+[Email Manager](mailto:${mgrEmail})
+${mgrID}
+`
 }
 
 
