@@ -1,8 +1,8 @@
 // DONE - GIVEN a command-line application that accepts user input
 // WHEN I am prompted for my team members and their information
 // THEN an HTML file is generated that displays a nicely formatted team roster based on user input
-// WHEN I click on an email address in the HTML
-// THEN my default email program opens and populates the TO field of the email with the address
+// DONE - WHEN I click on an email address in the HTML
+// DONE - THEN my default email program opens and populates the TO field of the email with the address
 // WHEN I click on the GitHub username
 // THEN that GitHub profile opens in a new tab
 // DONE - WHEN I start the application
@@ -115,10 +115,32 @@ const promptUserForInformation = () => {
 const printProfileData = profileDataArr => {
     console.log("=======");
 return`
-${mgrName}
-${mgrOfficeNumber}
-[Email Manager](mailto:${mgrEmail})
-${mgrID}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Team Generator</title>
+</head>
+<body>
+    <div class="text-white text-center bg-primary">
+        <div class="container">
+            <h1 class="display-3">My Team</h1>
+        </div>
+    </div>
+    <div id="largeTeamContainer">
+        <div id="managerInfo">
+            ${mgrName}
+            ${mgrOfficeNumber}
+            <a href="mailto:${mgrEmail}">Email Manager</a>
+            ${mgrID}
+        </div>
+    </div>
+</body>
+</html>
+
 `
 }
 
