@@ -93,8 +93,6 @@ const promptUserForInformation = () => {
             type: 'list',            
             message:"Would you like to add an Engineer, an Intern, or Finish your team?",
             choices: ['Engineer', 'Intern', 'Finish'],
-            validate: continueBuildingInput => {
-            }
         }
         
     ])
