@@ -108,7 +108,13 @@ const promptUserForInformation = () => {
         }
         
     ])
-    .then((data) => writeToFile(data))
+    .then((data) => {
+        // if continueBuildingTeam is Engeineer
+        // -- prompt these question
+        // else if intern
+        // -- promnt theses
+        writeToFile(data)
+    })
 }
 
 //CAPTURE AND RETURN THE USERS INPUT
