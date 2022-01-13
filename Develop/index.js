@@ -94,16 +94,6 @@ const promptUserForInformation = () => {
             message:"Would you like to add an Engineer, an Intern, or Finish your team?",
             choices: ['Engineer', 'Intern', 'Finish'],
             validate: continueBuildingInput => {
-                if (continueBuildingInput === "Engineer") {
-                    console.log(answer.continueBuildingTeam);
-                }
-                if (continueBuildingInput === "Intern") {
-                    console.log(answer.continueBuildingTeam);
-                }
-                if (continueBuildingInput === "Finish") {
-                    console.log(answer.continueBuildingTeam);
-                    return true;
-                }
             }
         }
         
