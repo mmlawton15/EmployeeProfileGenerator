@@ -17,7 +17,6 @@
 // THEN I exit the application, and the HTML is generated
 //should add data validation if i have time
 
-
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
@@ -106,7 +105,6 @@ const promptUserForInformation = () => {
                 }
             }
         }
-        
     ])
     .then((data) => writeToFile(data))
 }
@@ -154,6 +152,25 @@ return`
 </html>
 `
 }           
+
+// <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+//     <title>Team Generator</title>
+// </head>
+// <body>
+//     <div class="text-white text-center bg-primary">
+//         <div class="container">
+//             <h1 class="display-3">My Team</h1>
+//         </div>
+//     </div>
+//     <div id="largeTeamContainer" class="container">
+//         <div class="card" style="width: 18rem;">
+//             <div class="card-body">
 //                 <h5 class="card-title">${data.managerName}</h5>
 //                 <p>Manager</p>
 //             </div>
@@ -166,15 +183,12 @@ return`
 //     </div>
 // </body>
 // </html>
-// `
-
 
 //WRITE THE HTML FILE
 function writeToFile(data) {
     var printToString = printProfileData(data);
     fs.writeFileSync(path.join(process.cwd(), "index.html"), printToString);
 }
-
 
 //CALL TO HTML FUNCTIONS
 promptUserForInformation().then(printProfileData())
