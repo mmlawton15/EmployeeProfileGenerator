@@ -111,6 +111,7 @@ const promptUserForInformation = () => {
     .then((data) => writeToFile(data))
 }
 
+
 //CAPTURE AND RETURN THE USERS INPUT
 const printProfileData = profileDataArr => {
     console.log("=======");
@@ -131,8 +132,8 @@ return`
         </div>
     </div>
     <div id="largeTeamContainer" class="container">
-        <div id="managerInfoContainer" class="col-sm border border-secondary">
-            <div id="managerName" class="bg-info text-white">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
                 <p><script></script>${mgrName}</p>
                 <p>Manager</p>
             </div>
@@ -152,7 +153,20 @@ return`
 </body>
 </html>
 `
-}
+}           
+//                 <h5 class="card-title">${data.managerName}</h5>
+//                 <p>Manager</p>
+//             </div>
+//             <ul class="list-group list-group-flush">
+//                 <li class="list-group-item">ID: ${data.managerEmpID}</li>
+//                 <li class="list-group-item"><a href="mailto:${data.managerEmail}">Email Manager</a></li>
+//                 <li class="list-group-item">Office: ${data.managerOfficeNumber}</li>
+//             </ul>
+//         </div>
+//     </div>
+// </body>
+// </html>
+// `
 
 
 //WRITE THE HTML FILE
