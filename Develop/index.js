@@ -15,17 +15,11 @@
 // THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
-//should add data validation if i have time
-
+//should add data validation if i have time and a readme
 
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
-var mgrName;
-var mgrID;
-var mgrEmail;
-var mgrOfficeNumber;
-
 var profileDataArgs = process.argv.slice(2, process.argv.length);
 console.log(profileDataArgs);
 
@@ -38,7 +32,6 @@ const promptUserForInformation = () => {
             message: 'Please enter your Managers first and last name',
             validate: managerNameInput => {
                 if (managerNameInput) {
-                    mgrName = managerNameInput;
                     return true;
                 } else {
                     console.log("Please enter your managers first and last name!");
@@ -52,7 +45,6 @@ const promptUserForInformation = () => {
             message: 'Please enter your managers Employee ID',
             validate: managerEmpIDInput => {
                 if (managerEmpIDInput) {
-                    mgrID = managerEmpIDInput;
                 return true;
             } else {
                 console.log("Please enter your managers EmpID!");
@@ -66,7 +58,6 @@ const promptUserForInformation = () => {
             message: 'Please enter your managers email address',
             validate: managerEmailInput => {
                 if (managerEmailInput) {
-                    mgrEmail = managerEmailInput;
                 return true;
             } else {
                 console.log("Please enter your managers email address!");
@@ -80,7 +71,6 @@ const promptUserForInformation = () => {
             message: 'Please enter your managers Office Number',
             validate: managerOfficeNumberInput => {
                 if (managerOfficeNumberInput) {
-                    mgrOfficeNumber = managerOfficeNumberInput;
                 return true;
             } else {
                 console.log("Please enter your managers Office Number!");
@@ -97,6 +87,9 @@ const promptUserForInformation = () => {
         
     ])
     .then((data) => {
+        // if (continueBuildingTeam === Engineer) {
+        //     return inquirer.prompt
+        // }
         // if continueBuildingTeam is Engeineer
         // -- prompt these question
         // else if intern
@@ -106,7 +99,7 @@ const promptUserForInformation = () => {
 }
 
 //CAPTURE AND RETURN THE USERS INPUT
-const printProfileData = profileDataArr => {
+const printProfileData = data => {
     console.log("=======");
 return`
 <!DOCTYPE html>
@@ -125,22 +118,16 @@ return`
         </div>
     </div>
     <div id="largeTeamContainer" class="container">
-        <div id="managerInfoContainer" class="col-sm border border-secondary">
-            <div id="managerName" class="bg-info text-white">
-                <p><script></script>${mgrName}</p>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">            
+                <h5 class="card-title">${data.managerName}</h5>
                 <p>Manager</p>
             </div>
-            <div>
-                <div id="managerID" class="border">
-                    <p>ID: ${mgrID}</p>
-                </div>
-                <div id="managerEmail" class="border">
-                    <a href="mailto:${mgrEmail}">Email Manager</a>
-                </div>
-                <div id="managerOffice" class="border">
-                    <p>Office: ${mgrOfficeNumber}</p>
-                </div>                
-            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${data.managerEmpID}</li>
+                <li class="list-group-item"><a href="mailto:${data.managerEmail}">Email Manager</a></li>
+                <li class="list-group-item">Office: ${data.managerOfficeNumber}</li>
+            </ul>
         </div>
     </div>
 </body>
