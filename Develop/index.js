@@ -135,6 +135,42 @@ return`
 `
 }
 
+// <!DOCTYPE html>
+// <html lang="en">
+// <head>
+//     <meta charset="UTF-8">
+//     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+//     <title>Team Generator</title>
+// </head>
+// <body>
+//     <div class="text-white text-center bg-primary">
+//         <div class="container">
+//             <h1 class="display-3">My Team</h1>
+//         </div>
+//     </div>
+//     <div id="largeTeamContainer" class="container">
+//         <div class="card" style="width: 18rem;">
+//             <div class="card-body">
+//                 <p><script></script>data.managerName</p>
+//                 <p>Manager</p>
+//             </div>
+//             <div>
+//                 <div id="managerID" class="border">
+//                     <p>ID: data.managerEmpID</p>
+//                 </div>
+//                 <div id="managerEmail" class="border">
+//                     <a href="mailto:data.managerEmail">Email Manager</a>
+//                 </div>
+//                 <div id="managerOffice" class="border">
+//                     <p>Office: data.managerOfficeNumber</p>
+//                 </div>                
+//             </div>
+//         </div>
+//     </div>
+// </body>
+// </html>
 
 //WRITE THE HTML FILE
 function writeToFile(data) {
