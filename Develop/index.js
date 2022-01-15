@@ -20,10 +20,10 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
-var mgrName;
-var mgrID;
-var mgrEmail;
-var mgrOfficeNumber;
+// var mgrName;
+// var mgrID;
+// var mgrEmail;
+// var mgrOfficeNumber;
 
 var profileDataArgs = process.argv.slice(2, process.argv.length);
 console.log(profileDataArgs);
@@ -106,9 +106,9 @@ const promptUserForInformation = () => {
             }
         }
     ])
-    .then((data) => writeToFile(data))
+    .then((data) =>printProfileData(data)).then((data) => writeToFile());
 }
-
+promptUserForInformation();
 
 //CAPTURE AND RETURN THE USERS INPUT
 const printProfileData = profileDataArr => {
@@ -191,4 +191,4 @@ function writeToFile(data) {
 }
 
 //CALL TO HTML FUNCTIONS
-promptUserForInformation().then(printProfileData())
+//p//romptUserForInformation().then(printProfileData())
