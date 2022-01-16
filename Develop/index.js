@@ -85,135 +85,137 @@ const promptUserForInformation = () => {
             choices: ['Engineer', 'Intern', 'Finish']
         }
     ])
-    //.then((data) =>printProfileData(data)).then((data) => writeToFile());
-     .then((data) => {
-        if (continueBuildingTeam === Engineer) {
-            return inquirer.prompt([
-                {
-                    name:"engineerName",
-                    type: 'input',
-                    message: "What is your Engineer's first name?",
-                    validate: engineerNameInput => {
-                        if (engineerNameInput) {
-                            engineerFirstName = engineerNameInput;
-                            return true;
-                        } else {
-                            console.log("Please enter your engineer's name!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"engineerID",
-                    type: 'input',
-                    message: "What is your Engineer's Employee ID?",
-                    validate: engineerIDInput => {
-                        if (engineerIDInput) {
-                            engineerEmpID = engineerIDInput;
-                            return true;
-                        } else {
-                            console.log("Please enter your engineer's ID!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"engineerEmail",
-                    type: 'input',
-                    message: "What is your Engineer's email address?",
-                    validate: engineerEmailInput => {
-                        if (engineerEmailInput) {
-                            engineerEmailAddress = engineerEmailInput;
-                            return true;
-                        } else {
-                            console.log("Please enter your engineer's email address!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"engineerGitHub",
-                    type: 'input',
-                    message: "What is your Engineer's Github Username?",
-                    validate: engineerGithubInput => {
-                        if (engineerGithubInput) {
-                            engineerGithubUsername = engineerGithubInput;
-                            return true;
-                        } else {
-                            console.log("Please enter your engineer's Github Username!");
-                            return false;
-                        }
-                    }
-                }
-            ])
-        }
-        if (continueBuildingTeam === Intern) {
-            return inquirer.prompt([
-                {
-                    name:"internName",
-                    type: 'input',
-                    message: "What is your Engineer's first name?",
-                    validate: internNameInput => {
-                        if (internNameInput) {
-                            internFirstName = internNameInput;
-                            return true;
-                        } else {
-                            console.log("Please enter your intern's name!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"internID",
-                    type: 'input',
-                    message: "What is your Intern's Employee ID?",
-                    validate: internIDInput => {
-                        if (internIDInput) {
-                            internEmpID = internIDInput;
-                            return true;
-                        } else {
-                            console.log("Please enter your intern's ID!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"internEmail",
-                    type: 'input',
-                    message: "What is your intern's email address?",
-                    validate: internEmailInput => {
-                        if (internEmailInput) {
-                            internEmailAddress = internEmailInput;
-                            return true;
-                        } else {
-                            console.log("Please enter your intern's email address!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"internSchool",
-                    type: 'input',
-                    message: "What school did your intern go to?",
-                    validate: internSchoolInput => {
-                        if (internSchoolInput) {
-                            internSchoolAttended = internSchoolInput;
-                            return true;
-                        } else {
-                            console.log("Please enter your intern's alma mater!");
-                            return false;
-                        }
-                    }
-                }
-            ])
-        }
-        writeToFile(data)
-    })
+    //.then((data) => printProfileData(data)).then((data) => writeToFile());
+
 }
-promptUserForInformation();
+
+promptUserForInformation()
+.then((data) => {
+    if (data.continueBuildingTeam === "Engineer") {
+        return inquirer.prompt([
+            {
+                name:"engineerName",
+                type: 'input',
+                message: "What is your Engineer's first name?",
+                validate: engineerNameInput => {
+                    if (engineerNameInput) {
+                        engineerFirstName = engineerNameInput;
+                        return true;
+                    } else {
+                        console.log("Please enter your engineer's name!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"engineerID",
+                type: 'input',
+                message: "What is your Engineer's Employee ID?",
+                validate: engineerIDInput => {
+                    if (engineerIDInput) {
+                        engineerEmpID = engineerIDInput;
+                        return true;
+                    } else {
+                        console.log("Please enter your engineer's ID!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"engineerEmail",
+                type: 'input',
+                message: "What is your Engineer's email address?",
+                validate: engineerEmailInput => {
+                    if (engineerEmailInput) {
+                        engineerEmailAddress = engineerEmailInput;
+                        return true;
+                    } else {
+                        console.log("Please enter your engineer's email address!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"engineerGitHub",
+                type: 'input',
+                message: "What is your Engineer's Github Username?",
+                validate: engineerGithubInput => {
+                    if (engineerGithubInput) {
+                        engineerGithubUsername = engineerGithubInput;
+                        return true;
+                    } else {
+                        console.log("Please enter your engineer's Github Username!");
+                        return false;
+                    }
+                }
+            }
+        ])
+    }
+    if (data.continueBuildingTeam === "Intern") {
+        return inquirer.prompt([
+            {
+                name:"internName",
+                type: 'input',
+                message: "What is your Engineer's first name?",
+                validate: internNameInput => {
+                    if (internNameInput) {
+                        internFirstName = internNameInput;
+                        return true;
+                    } else {
+                        console.log("Please enter your intern's name!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"internID",
+                type: 'input',
+                message: "What is your Intern's Employee ID?",
+                validate: internIDInput => {
+                    if (internIDInput) {
+                        internEmpID = internIDInput;
+                        return true;
+                    } else {
+                        console.log("Please enter your intern's ID!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"internEmail",
+                type: 'input',
+                message: "What is your intern's email address?",
+                validate: internEmailInput => {
+                    if (internEmailInput) {
+                        internEmailAddress = internEmailInput;
+                        return true;
+                    } else {
+                        console.log("Please enter your intern's email address!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"internSchool",
+                type: 'input',
+                message: "What school did your intern go to?",
+                validate: internSchoolInput => {
+                    if (internSchoolInput) {
+                        internSchoolAttended = internSchoolInput;
+                        return true;
+                    } else {
+                        console.log("Please enter your intern's alma mater!");
+                        return false;
+                    }
+                }
+            }
+        ])
+    }
+    writeToFile(data)
+});
 
 //CAPTURE AND RETURN THE USERS INPUT
-const printProfileData = data => {
+const printProfileData = data => { //data probably has to be an array. make array global and push the names/employees into the array. createemployeecard()
     console.log("=======");
 return`
 <!DOCTYPE html>
