@@ -85,7 +85,7 @@ const promptUserForInformation = () => {
             message:"Would you like to add an Engineer, an Intern, or Finish your team?",
             choices: ['Engineer', 'Intern', 'Finish']
         }
-    ])
+    ]).then((data) => writeToFile())
 }
 
 promptUserForInformation()
