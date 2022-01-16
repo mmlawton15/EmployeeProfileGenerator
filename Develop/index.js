@@ -209,7 +209,6 @@ promptUserForInformation()
     writeToFile(data)
 });
 
-
 //CAPTURE AND RETURN THE USERS INPUT
 const printProfileData = data => { //data probably has to be an array. make array global and push the names/employees into the array. createemployeecard()
     console.log("=======");
