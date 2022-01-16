@@ -102,9 +102,9 @@ function cycleThroughChoices () {
 
 
 function engineerPrompt() {
-promptUserForInformation()
-.then((data) => {
-            //ENGINEER QUESTIONS
+    promptUserForInformation()
+    .then((data) => {
+        //ENGINEER QUESTIONS
             return inquirer.prompt([
                 {
                     name:"engineerName",
@@ -176,72 +176,72 @@ promptUserForInformation()
                 },
                 writeToFile(data)         
             ])
-});
+    });
 }
 
 function internPrompt() {
-promptUserForInformation()
-.then((data) => {
-    //INTERN QUESTIONS
-        return inquirer.prompt([
-            {
-                name:"internName",
-                type: 'input',
-                message: "What is your Intern's first name?",
-                validate: internNameInput => {
-                    if (internNameInput) {
-                        return true;
-                    } else {
-                        console.log("Please enter your intern's name!");
-                        return false;
+    promptUserForInformation()
+    .then((data) => {
+        //INTERN QUESTIONS
+            return inquirer.prompt([
+                {
+                    name:"internName",
+                    type: 'input',
+                    message: "What is your Intern's first name?",
+                    validate: internNameInput => {
+                        if (internNameInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter your intern's name!");
+                            return false;
+                        }
                     }
-                }
-            },
-            {
-                name:"internID",
-                type: 'input',
-                message: "What is your Intern's Employee ID?",
-                validate: internIDInput => {
-                    if (internIDInput) {
-                        return true;
-                    } else {
-                        console.log("Please enter your intern's ID!");
-                        return false;
+                },
+                {
+                    name:"internID",
+                    type: 'input',
+                    message: "What is your Intern's Employee ID?",
+                    validate: internIDInput => {
+                        if (internIDInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter your intern's ID!");
+                            return false;
+                        }
+                   }
+                },
+                {
+                    name:"internEmail",
+                    type: 'input',
+                    message: "What is your intern's email address?",
+                    validate: internEmailInput => {
+                        if (internEmailInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter your intern's email address!");
+                            return false;
+                        }
                     }
-                }
-            },
-            {
-                name:"internEmail",
-                type: 'input',
-                message: "What is your intern's email address?",
-                validate: internEmailInput => {
-                    if (internEmailInput) {
-                        return true;
-                    } else {
-                        console.log("Please enter your intern's email address!");
-                        return false;
+                },
+                {
+                    name:"internSchool",
+                    type: 'input',
+                    message: "What school did your intern go to?",
+                    validate: internSchoolInput => {
+                        if (internSchoolInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter your intern's alma mater!");
+                            return false;
+                        }
                     }
-                }
-            },
-            {
-                name:"internSchool",
-                type: 'input',
-                message: "What school did your intern go to?",
-                validate: internSchoolInput => {
-                    if (internSchoolInput) {
-                        return true;
-                    } else {
-                        console.log("Please enter your intern's alma mater!");
-                        return false;
-                    }
-                }
-            },
-            {
-                name:"continueBuildingTeam",
-                type: 'list',            
-                message:"Would you like to add an Engineer, an Intern, or Finish your team?",
-                choices: ['Engineer', 'Intern', 'Finish']
-            },
+                },
+                {
+                    name:"continueBuildingTeam",
+                    type: 'list',            
+                    message:"Would you like to add an Engineer, an Intern, or Finish your team?",
+                    choices: ['Engineer', 'Intern', 'Finish']
+                },
             writeToFile(data)
         ])
 })
