@@ -86,12 +86,22 @@ const promptUserForInformation = () => {
             choices: ['Engineer', 'Intern', 'Finish']
         }
     ])
+    if (data.continueBuildingTeam ==="Engineer") {
+        engineerPrompt();
+    }
+    if (data.continueBuildingTeam === "Intern") {
+        internPrompt();
+    }
+    if (data.continueBuildingTeam === "Finish") {
+        employeeArray.push(data);
+    }
 }
 
-promptUserForInformation()
-.then((data) => {
-        if (data.continueBuildingTeam === "Engineer") {
-            //ENGINEER QUESTIONS
+
+
+function engineerPrompt() {
+    // promptUserForInformation()
+    // .then((data) => {
             return inquirer.prompt([
                 {
                     name:"engineerName",
@@ -146,9 +156,11 @@ promptUserForInformation()
                     }
                 }          
             ])
-        }
+}
+
+
         //INTERN QUESTIONS
-        if (data.continueBuildingTeam === "Intern") {
+function internPrompt() {
             return inquirer.prompt([
                 {
                     name:"internName",
@@ -203,11 +215,7 @@ promptUserForInformation()
                     }
                 }
             ])
-        } if (data.continueBuildingTeam = "Finish") {
-        employeeArray.push(data);
-    }
-    writeToFile(data)
-});
+};
 
 
 //CAPTURE AND RETURN THE USERS INPUT
