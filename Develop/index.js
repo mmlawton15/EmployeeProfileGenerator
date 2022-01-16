@@ -90,7 +90,6 @@ const promptUserForInformation = () => {
 
 promptUserForInformation()
 .then((data) => {
-    while (data.continueBuildingTeam !== "Finish") {
         if (data.continueBuildingTeam === "Engineer") {
             //ENGINEER QUESTIONS
             return inquirer.prompt([
@@ -145,13 +144,7 @@ promptUserForInformation()
                             return false;
                         }
                     }
-                },
-                {
-                    name:"continueBuildingTeam",
-                    type: 'list',            
-                    message:"Would you like to add an Engineer, an Intern, or Finish your team?",
-                    choices: ['Engineer', 'Intern', 'Finish']
-                }            
+                }          
             ])
         }
         //INTERN QUESTIONS
@@ -208,20 +201,14 @@ promptUserForInformation()
                             return false;
                         }
                     }
-                },
-                {
-                    name:"continueBuildingTeam",
-                    type: 'list',            
-                    message:"Would you like to add an Engineer, an Intern, or Finish your team?",
-                    choices: ['Engineer', 'Intern', 'Finish']
                 }
             ])
-        }
-    } if(data.continueBuildingTeam = "Finish") {
+        } if (data.continueBuildingTeam = "Finish") {
         employeeArray.push(data);
     }
     writeToFile(data)
 });
+
 
 //CAPTURE AND RETURN THE USERS INPUT
 const printProfileData = data => { //data probably has to be an array. make array global and push the names/employees into the array. createemployeecard()
@@ -258,41 +245,7 @@ return`
 </body>
 </html>
 `
-}           
-
-
-
-//THIS CODE WORKS AND IS OLD
-// <!DOCTYPE html>
-{/* <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <title>Team Generator</title>
-</head>
-<body>
-    <div class="text-white text-center bg-primary">
-        <div class="container">
-            <h1 class="display-3">My Team</h1>
-        </div>
-    </div>
-    <div id="largeTeamContainer" class="container">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <p><script></script>${mgrName}</p>
-                <p>Manager</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${data.managerEmpID}</li>
-                <li class="list-group-item"><a href="mailto:${data.managerEmail}">Email Manager</a></li>
-                <li class="list-group-item">Office: ${data.managerOfficeNumber}</li>
-            </ul>
-        </div>
-    </div>
-</body>
-</html> */}
+}
 
 //WRITE THE HTML FILE
 function writeToFile(data) {
