@@ -22,7 +22,7 @@ const fs = require('fs');
 const path = require('path');
 var profileDataArgs = process.argv.slice(2, process.argv.length);
 console.log(profileDataArgs);
-var employeeArray = [];
+//var employeeArray = [];
 
 
 //FUNCTION TO PROMPT USER FOR INFORMATION
@@ -79,31 +79,36 @@ const promptUserForInformation = () => {
                 return false;
                 }
             }
-        },
-        {
-            name:"continueBuildingTeam",
-            type: 'list',            
-            message:"Would you like to add an Engineer, an Intern, or Finish your team?",
-            choices: ['Engineer', 'Intern', 'Finish']
         }
     ])
-    
+    .then((answers) => {
+        cycleThroughChoices(answers);
+    })
 }
 
 function cycleThroughChoices () {
-    if (data.continueBuildingTeam === "Intern") {
-        internPrompt();
-    } else if (data.continueBuildingTeam === "Engineer") {
-        engineerPrompt();
-    } else {
-        employeeArray.push(data);
-    }
+    return inquirer.prompt([
+        {
+            name:"whatToDoNext",
+            type:"list",
+            message:"Would you like to add an Employee, an Intern, or Finish your team?",
+            choices: ['Engineer', 'Intern', 'Finish']
+        }
+    ]).then((answers) => {
+        if (answers === "Intern") {
+            internPrompt();
+        } else if (answers === "Engineer") {
+            engineerPrompt();
+        } else {
+            //employeeArray.push(data);
+        }
+    })
 }
 
 
 function engineerPrompt() {
-    promptUserForInformation()
-    .then((data) => {
+    //promptUserForInformation()
+    //.then((data) => {
         //ENGINEER QUESTIONS
             return inquirer.prompt([
                 {
@@ -174,14 +179,15 @@ function engineerPrompt() {
                         }
                     }
                 },
-                writeToFile(data)         
+                writeToFile(data),
+                cycleThroughChoices()       
             ])
-    });
+   // });
 }
 
 function internPrompt() {
-    promptUserForInformation()
-    .then((data) => {
+//    promptUserForInformation()
+//    .then((data) => {
         //INTERN QUESTIONS
             return inquirer.prompt([
                 {
@@ -242,10 +248,11 @@ function internPrompt() {
                     message:"Would you like to add an Engineer, an Intern, or Finish your team?",
                     choices: ['Engineer', 'Intern', 'Finish']
                 },
-            writeToFile(data)
+            writeToFile(data),
+            cycleThroughChoices()
         ])
-})
-cycleThroughChoices();
+//})
+
 }
 
 promptUserForInformation();
