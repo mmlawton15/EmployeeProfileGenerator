@@ -105,7 +105,6 @@ function cycleThroughChoices () {
     })
 }
 
-
 function engineerPrompt() {
     //promptUserForInformation()
     //.then((data) => {
