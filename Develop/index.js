@@ -202,11 +202,11 @@ promptUserForInformation()
                         }
                     }
                 }
-            ])
+            ]).then((data) => writeToFile(data))
          } //if (data.continueBuildingTeam = "Finish") {
     //     employeeArray.push(data);
     // }
-    writeToFile(data)
+    
 });
 
 //CAPTURE AND RETURN THE USERS INPUT
