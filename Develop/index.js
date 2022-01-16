@@ -203,9 +203,9 @@ promptUserForInformation()
                     }
                 }
             ])
-        } if (data.continueBuildingTeam = "Finish") {
-        employeeArray.push(data);
-    }
+         } //if (data.continueBuildingTeam = "Finish") {
+    //     employeeArray.push(data);
+    // }
     writeToFile(data)
 });
 
