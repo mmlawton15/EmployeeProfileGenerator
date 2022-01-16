@@ -30,7 +30,7 @@ const promptUserForInformation = () => {
         {
             name: 'managerName',
             type: 'input',
-            message: 'Please enter your Managers first and last name',
+            message: 'Please enter your Managers first name',
             validate: managerNameInput => {
                 if (managerNameInput) {
                     mgrName = managerNameInput;
