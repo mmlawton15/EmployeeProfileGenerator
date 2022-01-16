@@ -24,6 +24,7 @@ var profileDataArgs = process.argv.slice(2, process.argv.length);
 console.log(profileDataArgs);
 var employeeArray = [];
 
+
 //FUNCTION TO PROMPT USER FOR INFORMATION
 const promptUserForInformation = () => {
     return inquirer.prompt([
@@ -86,11 +87,23 @@ const promptUserForInformation = () => {
             choices: ['Engineer', 'Intern', 'Finish']
         }
     ])
+    
 }
 
+function cycleThroughChoices () {
+    if (data.continueBuildingTeam === "Intern") {
+        internPrompt();
+    } else if (data.continueBuildingTeam === "Engineer") {
+        engineerPrompt();
+    } else {
+        employeeArray.push(data);
+    }
+}
+
+
+function engineerPrompt() {
 promptUserForInformation()
 .then((data) => {
-        if (data.continueBuildingTeam === "Engineer") {
             //ENGINEER QUESTIONS
             return inquirer.prompt([
                 {
@@ -144,71 +157,98 @@ promptUserForInformation()
                             return false;
                         }
                     }
-                }          
+                },
+                {
+                    name:"continueBuildingTeam",
+                    type: 'list',            
+                    message:"Would you like to add an Engineer, an Intern, or Finish your team?",
+                    choices: ['Engineer', 'Intern', 'Finish'],
+                    validate: continueBuildingTeamInput => {
+                        if (continueBuildingTeamInput === "Engineer") {
+                            engineerPrompt();
+                            return true;
+                        }
+                        if (continueBuildingTeamInput === "Intern") {
+                            internPrompt();
+                            return true;
+                        }
+                    }
+                },
+                writeToFile(data)         
             ])
-        }
-        //INTERN QUESTIONS
-        if (data.continueBuildingTeam === "Intern") {
-            return inquirer.prompt([
-                {
-                    name:"internName",
-                    type: 'input',
-                    message: "What is your Intern's first name?",
-                    validate: internNameInput => {
-                        if (internNameInput) {
-                            return true;
-                        } else {
-                            console.log("Please enter your intern's name!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"internID",
-                    type: 'input',
-                    message: "What is your Intern's Employee ID?",
-                    validate: internIDInput => {
-                        if (internIDInput) {
-                            return true;
-                        } else {
-                            console.log("Please enter your intern's ID!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"internEmail",
-                    type: 'input',
-                    message: "What is your intern's email address?",
-                    validate: internEmailInput => {
-                        if (internEmailInput) {
-                            return true;
-                        } else {
-                            console.log("Please enter your intern's email address!");
-                            return false;
-                        }
-                    }
-                },
-                {
-                    name:"internSchool",
-                    type: 'input',
-                    message: "What school did your intern go to?",
-                    validate: internSchoolInput => {
-                        if (internSchoolInput) {
-                            return true;
-                        } else {
-                            console.log("Please enter your intern's alma mater!");
-                            return false;
-                        }
+});
+}
+
+function internPrompt() {
+promptUserForInformation()
+.then((data) => {
+    //INTERN QUESTIONS
+        return inquirer.prompt([
+            {
+                name:"internName",
+                type: 'input',
+                message: "What is your Intern's first name?",
+                validate: internNameInput => {
+                    if (internNameInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter your intern's name!");
+                        return false;
                     }
                 }
-            ])
-        } if (data.continueBuildingTeam = "Finish") {
-        employeeArray.push(data);
-    }
-    writeToFile(data)
-});
+            },
+            {
+                name:"internID",
+                type: 'input',
+                message: "What is your Intern's Employee ID?",
+                validate: internIDInput => {
+                    if (internIDInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter your intern's ID!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"internEmail",
+                type: 'input',
+                message: "What is your intern's email address?",
+                validate: internEmailInput => {
+                    if (internEmailInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter your intern's email address!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"internSchool",
+                type: 'input',
+                message: "What school did your intern go to?",
+                validate: internSchoolInput => {
+                    if (internSchoolInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter your intern's alma mater!");
+                        return false;
+                    }
+                }
+            },
+            {
+                name:"continueBuildingTeam",
+                type: 'list',            
+                message:"Would you like to add an Engineer, an Intern, or Finish your team?",
+                choices: ['Engineer', 'Intern', 'Finish']
+            },
+            writeToFile(data)
+        ])
+})
+cycleThroughChoices();
+}
 
+promptUserForInformation();
 
 //CAPTURE AND RETURN THE USERS INPUT
 const printProfileData = data => { //data probably has to be an array. make array global and push the names/employees into the array. createemployeecard()
