@@ -22,7 +22,8 @@ const fs = require('fs');
 const path = require('path');
 var profileDataArgs = process.argv.slice(2, process.argv.length);
 console.log(profileDataArgs);
-var employeeArray = [];
+//var employeeArray = [];
+
 
 //FUNCTION TO PROMPT USER FOR INFORMATION
 const promptUserForInformation = () => {
@@ -78,20 +79,35 @@ const promptUserForInformation = () => {
                 return false;
                 }
             }
-        },
-        {
-            name:"continueBuildingTeam",
-            type: 'list',            
-            message:"Would you like to add an Engineer, an Intern, or Finish your team?",
-            choices: ['Engineer', 'Intern', 'Finish']
         }
     ])
+    .then((answers) => {
+        cycleThroughChoices(answers);
+    })
 }
 
-promptUserForInformation()
-.then((data) => {
-        if (data.continueBuildingTeam === "Engineer") {
-            //ENGINEER QUESTIONS
+function cycleThroughChoices () {
+    return inquirer.prompt([
+        {
+            name:"whatToDoNext",
+            type:"list",
+            message:"Would you like to add an Employee, an Intern, or Finish your team?",
+            choices: ['Engineer', 'Intern', 'Finish']
+        }
+    ]).then((answers) => {
+        if (answers === 'Intern') {
+            internPrompt()
+        } else if (answers === 'Engineer') {
+            engineerPrompt()
+        } else {
+            //employeeArray.push(data); 
+        }
+    })
+}
+
+function engineerPrompt() {
+    //.then((data) => {
+        //ENGINEER QUESTIONS
             return inquirer.prompt([
                 {
                     name:"engineerName",
@@ -144,11 +160,32 @@ promptUserForInformation()
                             return false;
                         }
                     }
-                }          
+                },
+                {
+                    name:"continueBuildingTeam",
+                    type: 'list',            
+                    message:"Would you like to add an Engineer, an Intern, or Finish your team?",
+                    choices: ['Engineer', 'Intern', 'Finish'],
+                    validate: continueBuildingTeamInput => {
+                        if (continueBuildingTeamInput === "Engineer") {
+                            engineerPrompt();
+                            return true;
+                        }
+                        if (continueBuildingTeamInput === "Intern") {
+                            internPrompt();
+                            return true;
+                        }
+                    }
+                },
+                writeToFile(data),
+                cycleThroughChoices()       
             ])
-        }
+   // });
+}
+
+function internPrompt() {
+//    .then((data) => {
         //INTERN QUESTIONS
-        if (data.continueBuildingTeam === "Intern") {
             return inquirer.prompt([
                 {
                     name:"internName",
@@ -174,7 +211,7 @@ promptUserForInformation()
                             console.log("Please enter your intern's ID!");
                             return false;
                         }
-                    }
+                   }
                 },
                 {
                     name:"internEmail",
@@ -201,14 +238,21 @@ promptUserForInformation()
                             return false;
                         }
                     }
-                }
-            ]).then((data) => writeToFile(data))
-         } //if (data.continueBuildingTeam = "Finish") {
-    //     employeeArray.push(data);
-    // }
-    
-});
+                },
+                {
+                    name:"continueBuildingTeam",
+                    type: 'list',            
+                    message:"Would you like to add an Engineer, an Intern, or Finish your team?",
+                    choices: ['Engineer', 'Intern', 'Finish']
+                },
+            writeToFile(data),
+            cycleThroughChoices()
+        ])
+//})
 
+}
+
+promptUserForInformation();
 
 //CAPTURE AND RETURN THE USERS INPUT
 const printProfileData = data => { //data probably has to be an array. make array global and push the names/employees into the array. createemployeecard()
