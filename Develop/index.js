@@ -95,10 +95,10 @@ function cycleThroughChoices () {
             choices: ['Engineer', 'Intern', 'Finish']
         }
     ]).then((answers) => {
-        if (answers === "Intern") {
-            internPrompt();
-        } else if (answers === "Engineer") {
-            engineerPrompt();
+        if (answers === 'Intern') {
+            internPrompt()
+        } else if (answers === 'Engineer') {
+            engineerPrompt()
         } else {
             //employeeArray.push(data);
         }
@@ -106,7 +106,6 @@ function cycleThroughChoices () {
 }
 
 function engineerPrompt() {
-    //promptUserForInformation()
     //.then((data) => {
         //ENGINEER QUESTIONS
             return inquirer.prompt([
@@ -185,7 +184,6 @@ function engineerPrompt() {
 }
 
 function internPrompt() {
-//    promptUserForInformation()
 //    .then((data) => {
         //INTERN QUESTIONS
             return inquirer.prompt([
