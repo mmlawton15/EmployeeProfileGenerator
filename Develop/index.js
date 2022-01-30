@@ -100,7 +100,7 @@ function cycleThroughChoices () {
         } else if (answers === 'Engineer') {
             engineerPrompt()
         } else {
-            //employeeArray.push(data);
+            //employeeArray.push(data); 
         }
     })
 }
