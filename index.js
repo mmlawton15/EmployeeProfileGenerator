@@ -1,16 +1,10 @@
-// WHEN I select the engineer option
-// THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
-// WHEN I select the intern option
-// THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
-// WHEN I decide to finish building my team
-// THEN I exit the application, and the HTML is generated
+
 
 const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
 var profileDataArgs = process.argv.slice(2, process.argv.length);
 console.log(profileDataArgs);
-//var employeeArray = [];
 
 //FUNCTION TO PROMPT USER FOR INFORMATION
 const promptUserForInformation = () => {
@@ -87,7 +81,6 @@ function cycleThroughChoices () {
         } else if (answers.whatToDoNext === 'Engineer') {
             engineerPrompt()
         } else {
-            //employeeArray.push(data); 
         }
     })
 }
